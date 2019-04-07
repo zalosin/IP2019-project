@@ -1,10 +1,16 @@
 package com.newsbag.server.core;
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
+
+import com.newsbag.server.util.DatabaseConnectorSource;
 
 /**
  * Main server class
@@ -32,6 +38,20 @@ public class MainFramework
 	// Port
 	private static final int ADMIN_PORT = 8081;
 
+	/**
+	 * Database settings
+	 * 
+	 * TODO:make it configurable via properties
+	 */
+	// DB User
+	private static final String DB_USER = "sqluser";
+
+	// DB Pass
+	private static final String DB_USER_PASS = "sqluserpw";
+
+	// DB Path
+	private static final String DB_PATH = "localhost";
+
 	// Singleton instance
 	private static MainFramework instance = null;
 
@@ -44,6 +64,17 @@ public class MainFramework
 	// Overall server status
 	// Default is dead :)
 	private String overallStatus = "I am dead";
+
+	// Connectors map
+	private Map<DatabaseConnectorSource, DatabaseConnector> dbConnectors;
+
+	/**
+	 * Private singleton constructor
+	 */
+	private MainFramework()
+	{
+		// intentionally empty
+	}
 
 	/**
 	 * Double checked singleton
@@ -143,20 +174,46 @@ public class MainFramework
 	}
 
 	/**
+	 * Initializes all the DB Connectors
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	private void initializeDatabaseConnectors() throws ClassNotFoundException, SQLException
+	{
+		// initialize connectors map
+		dbConnectors = new HashMap<DatabaseConnectorSource, DatabaseConnector>();
+
+		// initialize all defined connectors
+		for (DatabaseConnectorSource connectorSource : DatabaseConnectorSource.values())
+		{
+			final DatabaseConnector connector = new DatabaseConnector(connectorSource, DB_USER, DB_USER_PASS, DB_PATH,
+					connectorSource.getSchemaName());
+
+			dbConnectors.put(connectorSource, connector);
+		}
+	}
+
+	/**
 	 * The main server method
 	 * 
 	 * @param args
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
-	public static void main(String[] args) throws InterruptedException
+	public static void main(String[] args) throws InterruptedException, ClassNotFoundException, SQLException
 	{
 		// Start public and administration servers
 		getInstance().startPublicServer(PUBLIC_PORT, PUBLIC_HANDLERS_PACKAGE_NAME);
 		getInstance().startAdminServer(ADMIN_PORT, ADMIN_HANDLERS_PACKAGE_NAME);
 
+		// initialize database connectors
+		getInstance().initializeDatabaseConnectors();
+
 		// Wait 5 second for servers to start
 		waitSometime(5);
-		
+
 		if (getInstance().getPublicServer().isStarted() && getInstance().getAdminServer().isStarted())
 		{
 			// Set status to alive
@@ -164,7 +221,7 @@ public class MainFramework
 			getInstance().setOverallStatus("I am alive");
 		}
 	}
-	
+
 	/**
 	 * Helper method for interrupting the thread for given amount of seconds
 	 * 
@@ -215,6 +272,25 @@ public class MainFramework
 	private Server getAdminServer()
 	{
 		return adminServer;
+	}
+
+	/**
+	 * Return the DB Connector given source
+	 * 
+	 * @param source
+	 * @return DatabaseConnector
+	 * @throws Exception in case connector was not found
+	 */
+	public DatabaseConnector getConnector(DatabaseConnectorSource source) throws Exception
+	{
+		final DatabaseConnector connector = dbConnectors.get(source);
+
+		if (connector == null)
+		{
+			throw new Exception("Database connector was not found for " + source.getSchemaName());
+		}
+
+		return connector;
 	}
 
 }
