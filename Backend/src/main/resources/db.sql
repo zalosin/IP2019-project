@@ -1,0 +1,14 @@
+-- CREATE SCHEMAS
+CREATE SCHEMA newsbag_core;
+CREATE SCHEMA newsbag_user1;
+CREATE SCHEMA newsbag_user2;
+
+-- CREATE ARTICLES SQL SCRIPT
+CREATE TABLE newsbag_core.articles(
+	id INT NOT NULL AUTO_INCREMENT,
+	title VARCHAR(100) NOT NULL,
+	body TEXT(65535) NOT NULL,
+	createTime INT NOT NULL,
+    authorId INT NOU NULL,
+	PRIMARY KEY ( id )
+	);

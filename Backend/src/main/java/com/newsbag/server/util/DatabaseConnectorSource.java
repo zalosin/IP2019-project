@@ -8,7 +8,9 @@ package com.newsbag.server.util;
  */
 public enum DatabaseConnectorSource
 {
-	CORE("newsbag_core");
+	CORE("newsbag_core"),
+	USER1("newsbag_user1"),
+	USER2("newsbag_user2");
 
 	private String schemaName;
 

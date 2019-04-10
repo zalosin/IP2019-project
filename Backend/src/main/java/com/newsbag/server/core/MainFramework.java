@@ -10,6 +10,8 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
+import com.newsbag.server.cache.ArticleCache;
+import com.newsbag.server.dao.ArticleDao;
 import com.newsbag.server.util.DatabaseConnectorSource;
 
 /**
@@ -67,7 +69,19 @@ public class MainFramework
 
 	// Connectors map
 	private Map<DatabaseConnectorSource, DatabaseConnector> dbConnectors;
-
+	
+	
+	/**
+	 * DAOs
+	 */
+	private ArticleDao articleDao;
+	
+	
+	/**
+	 * CACHEs
+	 */
+	private ArticleCache articleCache;
+	
 	/**
 	 * Private singleton constructor
 	 */
@@ -198,11 +212,9 @@ public class MainFramework
 	 * The main server method
 	 * 
 	 * @param args
-	 * @throws InterruptedException
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
+	 * @throws Exception 
 	 */
-	public static void main(String[] args) throws InterruptedException, ClassNotFoundException, SQLException
+	public static void main(String[] args) throws Exception
 	{
 		// Start public and administration servers
 		getInstance().startPublicServer(PUBLIC_PORT, PUBLIC_HANDLERS_PACKAGE_NAME);
@@ -210,6 +222,15 @@ public class MainFramework
 
 		// initialize database connectors
 		getInstance().initializeDatabaseConnectors();
+		
+		// initialize daos
+		getInstance().initializeDaos();
+		
+		// initialize caches before daos
+		getInstance().initializeCaches();
+		
+		// reload caches
+		getInstance().reloadCaches();
 
 		// Wait 5 second for servers to start
 		waitSometime(5);
@@ -220,6 +241,36 @@ public class MainFramework
 			// THIS MUST ALWAYS BE THE LAST INSTRUCTION
 			getInstance().setOverallStatus("I am alive");
 		}
+	}
+	
+	/**
+	 * Method used to init daos 
+	 * 
+	 * @throws Exception
+	 */
+	private void initializeDaos() throws Exception
+	{
+		articleDao = new ArticleDao();
+	}
+	
+	/**
+	 * Method used to init caches
+	 * 
+	 * @throws Exception
+	 */
+	private void initializeCaches() throws Exception
+	{
+		articleCache = new ArticleCache(articleDao);
+	}
+	
+	/**
+	 * Method used for caches load
+	 * 
+	 * @throws Exception
+	 */
+	private void reloadCaches() throws Exception
+	{
+		articleCache.reloadCache();
 	}
 
 	/**
@@ -291,6 +342,26 @@ public class MainFramework
 		}
 
 		return connector;
+	}
+	
+	/**
+	 * Returns the Article dao
+	 * 
+	 * @return ArticleDao
+	 */
+	public ArticleDao getArticleDao()
+	{
+		return this.articleDao;
+	}
+	
+	/**
+	 * Returns the Article cache
+	 * 
+	 * @return ArticleCache
+	 */
+	public ArticleCache getArticleCache()
+	{
+		return this.articleCache;
 	}
 
 }
