@@ -9,6 +9,14 @@ CREATE TABLE newsbag_core.articles(
 	title VARCHAR(100) NOT NULL,
 	body TEXT(65535) NOT NULL,
 	createTime INT NOT NULL,
-    authorId INT NOU NULL,
-	PRIMARY KEY ( id )
-	);
+    	authorId INT NOT NULL,
+	categoryId INT NOT NULL,
+	PRIMARY KEY (id)
+);
+
+-- CREATE CATEGORIES SQL SCRIPT
+CREATE TABLE newsbag_core.categories(
+	id INT NOT NULL AUTO_INCREMENT,
+	title VARCHAR(30) NOT NULL,
+	PRIMARY KEY(id)
+);

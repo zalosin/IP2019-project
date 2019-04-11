@@ -13,13 +13,14 @@ public class ArticleModel
 	String body;
 	int createTime;
 	int authorId;
+	int categoryId;
 
 	public ArticleModel()
 	{
 		super();
 	}
 
-	public ArticleModel(int id, String title, String body, int createTime, int authorId)
+	public ArticleModel(int id, String title, String body, int createTime, int authorId, int categoryId)
 	{
 		super();
 		this.id = id;
@@ -27,6 +28,7 @@ public class ArticleModel
 		this.body = body;
 		this.createTime = createTime;
 		this.authorId = authorId;
+		this.categoryId = categoryId;
 	}
 
 	public int getId()
@@ -77,6 +79,16 @@ public class ArticleModel
 	public void setAuthorId(int authorId)
 	{
 		this.authorId = authorId;
+	}
+	
+	public int getCategoryId()
+	{
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId)
+	{
+		this.categoryId = categoryId;
 	}
 
 	@Override
