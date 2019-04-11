@@ -43,9 +43,28 @@ public class ArticleCache extends AbstractCache
 	 * 
 	 * @return List<ArticleModel>
 	 */
-	public List<ArticleModel> getAllCachedArticles()
+	public synchronized List<ArticleModel> getAllCachedArticles()
 	{
 		return cachedArticles;
+	}
+	
+	/**
+	 * Returns article by id
+	 * 
+	 * @param articleId
+	 * @return ArticleModel | null in case there is no such article
+	 */
+	public synchronized ArticleModel getArticleById(final int articleId)
+	{
+		for(ArticleModel articleModel : cachedArticles)
+		{
+			if(articleId == articleModel.getId())
+			{
+				return articleModel;
+			}
+		}
+		
+		return null;
 	}
 	
 	

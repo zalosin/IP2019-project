@@ -1,5 +1,6 @@
 package com.newsbag.server.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,6 +11,12 @@ import com.newsbag.server.core.MainFramework;
 import com.newsbag.server.model.ArticleModel;
 import com.newsbag.server.util.DatabaseConnectorSource;
 
+/**
+ * Dao class used for 'articles' core table
+ * 
+ * @author adrianmihaichesnoiu
+ *
+ */
 public class ArticleDao
 {
 	private final MainFramework mainFramework;
@@ -39,30 +46,56 @@ public class ArticleDao
 	 * Creates article
 	 * 
 	 * @param article
+	 * @throws SQLException 
 	 */
-	public void createArticle(ArticleModel article)
+	public void createArticle(ArticleModel article) throws SQLException
 	{
-		// TODO
+		final String sql = "INSERT INTO articles (title, body, createTime, authorId) VALUES (?,?,?,?)";
+		final PreparedStatement preparedStatement = dbConnector.getPreparedStatement(sql);
+		
+		preparedStatement.setString(1, article.getTitle());
+		preparedStatement.setString(2, article.getBody());
+		preparedStatement.setInt(3, Integer.valueOf(String.valueOf(System.currentTimeMillis() / 1000)));
+		preparedStatement.setInt(4, article.getAuthorId());
+		
+		preparedStatement.execute();
+		
 	}
 
 	/**
 	 * Updates article
 	 * 
 	 * @param article
+	 * @throws SQLException 
 	 */
-	public void updateArticle(ArticleModel article)
+	public void updateArticle(ArticleModel article) throws SQLException
 	{
-		// TODO
+		final String sql = "UPDATE articles SET title=?, body=?, createTime=?, authorId=? WHERE id = ?";
+		final PreparedStatement preparedStatement = dbConnector.getPreparedStatement(sql);
+		
+		preparedStatement.setString(1, article.getTitle());
+		preparedStatement.setString(2, article.getBody());
+		preparedStatement.setInt(3, Integer.valueOf(String.valueOf(System.currentTimeMillis() / 1000)));
+		preparedStatement.setInt(4, article.getAuthorId());
+		preparedStatement.setInt(5, article.getId());
+		
+		preparedStatement.executeUpdate();
 	}
 
 	/**
 	 * Deletes article by articleId
 	 * 
 	 * @param articleId
+	 * @throws SQLException 
 	 */
-	public void deleteArticle(int articleId)
+	public void deleteArticle(int articleId) throws SQLException
 	{
-		// TODO
+		final String sql = "DELETE FROM articles WHERE id = ?";
+		final PreparedStatement preparedStatement = dbConnector.getPreparedStatement(sql);
+		
+		preparedStatement.setInt(1, articleId);
+		preparedStatement.execute();
+		
 	}
 
 	/**
@@ -76,16 +109,19 @@ public class ArticleDao
 	{
 		final List<ArticleModel> articles = new ArrayList<ArticleModel>();
 
-		while (resultSet.next())
+		if(resultSet != null)
 		{
-			int id = resultSet.getInt("id");
-			String title = resultSet.getString("title");
-			String body = resultSet.getString("body");
-			int createTime = resultSet.getInt("createTime");
-			int authorId = resultSet.getInt("authorId");
-
-			final ArticleModel article = new ArticleModel(id, title, body, createTime, authorId);
-			articles.add(article);
+			while (resultSet.next())
+			{
+				int id = resultSet.getInt("id");
+				String title = resultSet.getString("title");
+				String body = resultSet.getString("body");
+				int createTime = resultSet.getInt("createTime");
+				int authorId = resultSet.getInt("authorId");
+	
+				final ArticleModel article = new ArticleModel(id, title, body, createTime, authorId);
+				articles.add(article);
+			}
 		}
 
 		return articles;
