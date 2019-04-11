@@ -11,7 +11,9 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
 import com.newsbag.server.cache.ArticleCache;
+import com.newsbag.server.cache.CategoryCache;
 import com.newsbag.server.dao.ArticleDao;
+import com.newsbag.server.dao.CategoryDao;
 import com.newsbag.server.util.DatabaseConnectorSource;
 
 /**
@@ -75,12 +77,13 @@ public class MainFramework
 	 * DAOs
 	 */
 	private ArticleDao articleDao;
-	
+	private CategoryDao categoryDao;
 	
 	/**
 	 * CACHEs
 	 */
 	private ArticleCache articleCache;
+	private CategoryCache categoryCache;
 	
 	/**
 	 * Private singleton constructor
@@ -251,6 +254,7 @@ public class MainFramework
 	private void initializeDaos() throws Exception
 	{
 		articleDao = new ArticleDao();
+		categoryDao = new CategoryDao();
 	}
 	
 	/**
@@ -261,6 +265,7 @@ public class MainFramework
 	private void initializeCaches() throws Exception
 	{
 		articleCache = new ArticleCache(articleDao);
+		categoryCache = new CategoryCache(categoryDao);
 	}
 	
 	/**
@@ -364,4 +369,13 @@ public class MainFramework
 		return this.articleCache;
 	}
 
+	public CategoryDao getCategoryDao()
+	{
+		return this.categoryDao;
+	}
+
+	public CategoryCache getCategoryCache()
+	{
+		return this.categoryCache;
+	}
 }
