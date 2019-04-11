@@ -71,20 +71,22 @@ public class MainFramework
 
 	// Connectors map
 	private Map<DatabaseConnectorSource, DatabaseConnector> dbConnectors;
-	
-	
+
+	// TODO make it configurable
+	public boolean isLocal = false;
+
 	/**
 	 * DAOs
 	 */
 	private ArticleDao articleDao;
 	private CategoryDao categoryDao;
-	
+
 	/**
 	 * CACHEs
 	 */
 	private ArticleCache articleCache;
 	private CategoryCache categoryCache;
-	
+
 	/**
 	 * Private singleton constructor
 	 */
@@ -205,7 +207,7 @@ public class MainFramework
 		for (DatabaseConnectorSource connectorSource : DatabaseConnectorSource.values())
 		{
 			final DatabaseConnector connector = new DatabaseConnector(connectorSource, DB_USER, DB_USER_PASS, DB_PATH,
-					connectorSource.getSchemaName());
+					connectorSource.getSchemaName(), isLocal);
 
 			dbConnectors.put(connectorSource, connector);
 		}
@@ -215,23 +217,30 @@ public class MainFramework
 	 * The main server method
 	 * 
 	 * @param args
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception
 	{
 		// Start public and administration servers
-		getInstance().startPublicServer(PUBLIC_PORT, PUBLIC_HANDLERS_PACKAGE_NAME);
+		if (!getInstance().isLocal)
+		{
+			final String herokuPort = System.getenv("PORT");
+			getInstance().startPublicServer(Integer.valueOf(herokuPort), PUBLIC_HANDLERS_PACKAGE_NAME);
+		} else
+		{
+			getInstance().startPublicServer(PUBLIC_PORT, PUBLIC_HANDLERS_PACKAGE_NAME);
+		}
 		getInstance().startAdminServer(ADMIN_PORT, ADMIN_HANDLERS_PACKAGE_NAME);
 
 		// initialize database connectors
 		getInstance().initializeDatabaseConnectors();
-		
+
 		// initialize daos
 		getInstance().initializeDaos();
-		
+
 		// initialize caches before daos
 		getInstance().initializeCaches();
-		
+
 		// reload caches
 		getInstance().reloadCaches();
 
@@ -244,10 +253,45 @@ public class MainFramework
 			// THIS MUST ALWAYS BE THE LAST INSTRUCTION
 			getInstance().setOverallStatus("I am alive");
 		}
+		
+		if(!getInstance().isLocal)
+		{
+			getInstance().keepDBConnectionAlive();
+		}
 	}
-	
+
+	private void keepDBConnectionAlive()
+	{
+		System.out.println("Starting connection keeper...");
+		Thread serverThread = new Thread(() ->
+		{
+			while (true)
+			{
+				try
+				{
+					MainFramework.getInstance().getConnector(DatabaseConnectorSource.CORE).executeQuery("SELECT 1");
+				} catch (Exception e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try
+				{
+					waitSometime(50);
+				} catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		});
+
+		serverThread.start();
+	}
+
 	/**
-	 * Method used to init daos 
+	 * Method used to init daos
 	 * 
 	 * @throws Exception
 	 */
@@ -256,7 +300,7 @@ public class MainFramework
 		articleDao = new ArticleDao();
 		categoryDao = new CategoryDao();
 	}
-	
+
 	/**
 	 * Method used to init caches
 	 * 
@@ -267,7 +311,7 @@ public class MainFramework
 		articleCache = new ArticleCache(articleDao);
 		categoryCache = new CategoryCache(categoryDao);
 	}
-	
+
 	/**
 	 * Method used for caches load
 	 * 
@@ -348,7 +392,7 @@ public class MainFramework
 
 		return connector;
 	}
-	
+
 	/**
 	 * Returns the Article dao
 	 * 
@@ -358,7 +402,7 @@ public class MainFramework
 	{
 		return this.articleDao;
 	}
-	
+
 	/**
 	 * Returns the Article cache
 	 * 

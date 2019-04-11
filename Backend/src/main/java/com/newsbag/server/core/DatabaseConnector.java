@@ -1,5 +1,6 @@
 package com.newsbag.server.core;
 
+import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -36,14 +37,36 @@ public class DatabaseConnector
 	 * @throws ClassNotFoundException
 	 */
 	public DatabaseConnector(final DatabaseConnectorSource type, final String user, final String password,
-			final String dbPath, final String schema) throws SQLException, ClassNotFoundException
+			final String dbPath, final String schema, final boolean isLocal) throws SQLException, ClassNotFoundException
 	{
 		this.type = type;
 
-		Class.forName(JDBC_DRIVER_NAME);
+		if (!isLocal)
+		{
+			try
+			{
+				Class.forName(JDBC_DRIVER_NAME);
 
-		connection = DriverManager.getConnection("jdbc:mysql://" + dbPath + "/" + schema + "?user=" + user
-				+ "&serverTimezone=" + TimeZone.getDefault().getID() + "&password=" + password);
+				URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+
+				String usernameHeroku = dbUri.getUserInfo().split(":")[0];
+				String passwordHeroku = dbUri.getUserInfo().split(":")[1];
+				String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+
+				connection = DriverManager.getConnection(dbUrl, usernameHeroku, passwordHeroku);
+			} catch (java.net.URISyntaxException ex)
+			{
+				System.err.println("Error when determining the Heroku DB URI.");
+			}
+		} else
+		{
+			this.type = type;
+
+			Class.forName(JDBC_DRIVER_NAME);
+
+			connection = DriverManager.getConnection("jdbc:mysql://" + dbPath + "/" + schema + "?user=" + user
+					+ "&serverTimezone=" + TimeZone.getDefault().getID() + "&password=" + password);
+		}
 	}
 
 	/**
@@ -58,7 +81,7 @@ public class DatabaseConnector
 		final Statement statement = connection.createStatement();
 		return statement.executeQuery(sqlQuery);
 	}
-	
+
 	public PreparedStatement getPreparedStatement(final String sqlQuery) throws SQLException
 	{
 		final PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
