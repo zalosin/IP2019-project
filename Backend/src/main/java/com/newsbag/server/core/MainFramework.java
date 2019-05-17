@@ -12,8 +12,10 @@ import org.glassfish.jersey.servlet.ServletContainer;
 
 import com.newsbag.server.cache.ArticleCache;
 import com.newsbag.server.cache.CategoryCache;
+import com.newsbag.server.cache.UserCache;
 import com.newsbag.server.dao.ArticleDao;
 import com.newsbag.server.dao.CategoryDao;
+import com.newsbag.server.dao.UserDao;
 import com.newsbag.server.util.DatabaseConnectorSource;
 
 /**
@@ -73,19 +75,21 @@ public class MainFramework
 	private Map<DatabaseConnectorSource, DatabaseConnector> dbConnectors;
 
 	// TODO make it configurable
-	public boolean isLocal = false;
+	public boolean isLocal = true;
 
 	/**
 	 * DAOs
 	 */
 	private ArticleDao articleDao;
 	private CategoryDao categoryDao;
+	private UserDao userDao;
 
 	/**
 	 * CACHEs
 	 */
 	private ArticleCache articleCache;
 	private CategoryCache categoryCache;
+	private UserCache userCache;
 
 	/**
 	 * Private singleton constructor
@@ -299,6 +303,7 @@ public class MainFramework
 	{
 		articleDao = new ArticleDao();
 		categoryDao = new CategoryDao();
+		userDao = new UserDao();
 	}
 
 	/**
@@ -310,6 +315,7 @@ public class MainFramework
 	{
 		articleCache = new ArticleCache(articleDao);
 		categoryCache = new CategoryCache(categoryDao);
+		userCache = new UserCache(userDao);
 	}
 
 	/**
@@ -320,6 +326,8 @@ public class MainFramework
 	private void reloadCaches() throws Exception
 	{
 		articleCache.reloadCache();
+		categoryCache.reloadCache();
+		userCache.reloadCache();
 	}
 
 	/**
@@ -421,5 +429,15 @@ public class MainFramework
 	public CategoryCache getCategoryCache()
 	{
 		return this.categoryCache;
+	}
+
+	public UserDao getUserDao()
+	{
+		return this.userDao;
+	}
+
+	public UserCache getUserCache()
+	{
+		return this.userCache;
 	}
 }
