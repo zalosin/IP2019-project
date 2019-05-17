@@ -62,6 +62,7 @@ public class UserHandler
 	}
 
 	@GET
+	@Secured
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<UserModel> getAllUsers()
@@ -70,6 +71,7 @@ public class UserHandler
 	}
 
 	@GET
+	@Secured
 	@Path("/{userId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUserById(@PathParam("userId") final int userId)
@@ -85,6 +87,7 @@ public class UserHandler
 	}
 
 	@POST
+	@Secured
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createUser(final UserModel user) throws Exception
@@ -101,6 +104,7 @@ public class UserHandler
 	}
 
 	@PUT
+	@Secured
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateUser(final UserModel user) throws Exception
@@ -117,6 +121,7 @@ public class UserHandler
 	}
 
 	@DELETE
+	@Secured
 	@Path("/{userId}")
 	public Response deteleUser(@PathParam("userId") final int userId) throws Exception
 	{

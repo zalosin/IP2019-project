@@ -48,6 +48,7 @@ public class ArticleHandler
 	 * @return List<ArticleModel>
 	 */
 	@GET
+	@Secured
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ArticleModel> getAllArticles()
@@ -63,6 +64,7 @@ public class ArticleHandler
 	 * @return
 	 */
 	@GET
+	@Secured
 	@Path("/{articleId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getArticleById(@PathParam("articleId") final int articleId)
@@ -85,6 +87,7 @@ public class ArticleHandler
 	 * @throws Exception 
 	 */
 	@POST
+	@Secured
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createArticle(final ArticleModel article) throws Exception
@@ -109,6 +112,7 @@ public class ArticleHandler
 	 * @throws Exception 
 	 */
 	@PUT
+	@Secured
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateArticle(final ArticleModel article) throws Exception
@@ -133,6 +137,7 @@ public class ArticleHandler
 	 * @throws Exception 
 	 */
 	@DELETE
+	@Secured
 	@Path("/{articleId}")
 	public Response deteleArticle(@PathParam("articleId") final int articleId) throws Exception
 	{

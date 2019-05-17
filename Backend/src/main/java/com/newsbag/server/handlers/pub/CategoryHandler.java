@@ -34,6 +34,7 @@ public class CategoryHandler
 	}
 
 	@GET
+	@Secured
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<CategoryModel> getAllCategories()
@@ -42,6 +43,7 @@ public class CategoryHandler
 	}
 
 	@GET
+	@Secured
 	@Path("/{categoryId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCategoryById(@PathParam("categoryId") final int categoryId)
@@ -57,6 +59,7 @@ public class CategoryHandler
 	}
 
 	@POST
+	@Secured
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createCategory(final CategoryModel category) throws Exception
@@ -73,6 +76,7 @@ public class CategoryHandler
 	}
 
 	@PUT
+	@Secured
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateCategory(final CategoryModel category) throws Exception
@@ -89,6 +93,7 @@ public class CategoryHandler
 	}
 
 	@DELETE
+	@Secured
 	@Path("/{categoryId}")
 	public Response deteleCategory(@PathParam("categoryId") final int categoryId) throws Exception
 	{
