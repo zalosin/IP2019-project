@@ -1,6 +1,9 @@
 package com.newsbag.server.handlers.pub;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.List;
+import java.util.Random;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -31,6 +34,31 @@ public class UserHandler
 		this.mainFramework = MainFramework.getInstance();
 		this.userCache = mainFramework.getUserCache();
 		this.userDao = mainFramework.getUserDao();
+	}
+	
+	@POST
+	@Path("/authentication")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response authenticationUser(final UserModel user)
+	{
+		if(!isValid(user))
+		{
+			return Response.status(HttpStatusCode.BAD_REQUEST.getStatusCode()).build();
+		}
+		
+		if (!userCache.checkUsernameAndPassword(user.getUsername(), user.getPassword()))
+		{
+			return Response.status(HttpStatusCode.BAD_REQUEST.getStatusCode()).build();
+		}
+		
+		Random random = new SecureRandom();
+		String token = new BigInteger(130, random).toString(32);
+		String rsp = "{ \"token\": \"" + token + "\"}";
+		
+		userCache.storeToken(token, user.getUsername());
+
+		return Response.ok(rsp).build();
 	}
 
 	@GET
