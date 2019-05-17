@@ -103,12 +103,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="row">
-                        <select>
-                            <option value="cat-id-1">Actualitate</option>
-                            <option value="cat-id-2">Economie</option>
-                            <option value="cat-id-3">Externe</option>
-                            <option value="cat-id-4">Tech</option>
-                            <option value="cat-id-5">Sport</option>
+                        <select id="category-select">
                         </select>
                     </div>
                     <div class="row">
@@ -219,6 +214,20 @@
             //     '//www.tiny.cloud/css/codepen.min.css'
             // ]
         });
+
+        let url2 = "https://cors-anywhere.herokuapp.com/http://newsbagserver.herokuapp.com/category/all";
+        fetch(url2)
+            .then((response) =>{
+                if(response.ok){
+                    return response.json();
+            }
+        })
+            .then((json)=>{
+                for (let i = 0; i<json.length; i++){
+                    let div = `<option value="cat-id-`+json[i].id+`">`+json[i].title.charAt(0).toUpperCase() + json[i].title.slice(1)+`</option>`;
+                    $("#category-select").append(div);
+                }
+        })
     </script>
 
 </body>
