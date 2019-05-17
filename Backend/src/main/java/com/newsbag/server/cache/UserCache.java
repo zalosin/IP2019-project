@@ -89,4 +89,9 @@ public class UserCache extends AbstractCache
 
 		return null;
 	}
+	
+	public synchronized void invalidateToken(String token)
+	{
+		tokens.remove(token);
+	}
 }

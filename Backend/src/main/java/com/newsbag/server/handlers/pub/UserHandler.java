@@ -13,6 +13,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -60,7 +62,17 @@ public class UserHandler
 
 		return Response.ok(rsp).build();
 	}
-
+	
+	@POST
+	@Secured
+	@Path("/logout")
+	public Response logout(@Context HttpHeaders httpHeaders)
+	{
+		String token = httpHeaders.getHeaderString("Authorization");
+		userCache.invalidateToken(token);
+		return Response.ok().build();
+	}
+	
 	@GET
 	@Secured
 	@Path("/all")
