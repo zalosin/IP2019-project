@@ -12,9 +12,11 @@ import org.glassfish.jersey.servlet.ServletContainer;
 
 import com.newsbag.server.cache.ArticleCache;
 import com.newsbag.server.cache.CategoryCache;
+import com.newsbag.server.cache.CommentCache;
 import com.newsbag.server.cache.UserCache;
 import com.newsbag.server.dao.ArticleDao;
 import com.newsbag.server.dao.CategoryDao;
+import com.newsbag.server.dao.CommentDao;
 import com.newsbag.server.dao.UserDao;
 import com.newsbag.server.util.DatabaseConnectorSource;
 
@@ -83,6 +85,7 @@ public class MainFramework
 	private ArticleDao articleDao;
 	private CategoryDao categoryDao;
 	private UserDao userDao;
+	private CommentDao commentDao;
 
 	/**
 	 * CACHEs
@@ -90,6 +93,7 @@ public class MainFramework
 	private ArticleCache articleCache;
 	private CategoryCache categoryCache;
 	private UserCache userCache;
+	private CommentCache commentCache;
 
 	/**
 	 * Private singleton constructor
@@ -304,6 +308,7 @@ public class MainFramework
 		articleDao = new ArticleDao();
 		categoryDao = new CategoryDao();
 		userDao = new UserDao();
+		commentDao = new CommentDao();
 	}
 
 	/**
@@ -316,6 +321,7 @@ public class MainFramework
 		articleCache = new ArticleCache(articleDao);
 		categoryCache = new CategoryCache(categoryDao);
 		userCache = new UserCache(userDao);
+		commentCache = new CommentCache(commentDao);
 	}
 
 	/**
@@ -328,6 +334,7 @@ public class MainFramework
 		articleCache.reloadCache();
 		categoryCache.reloadCache();
 		userCache.reloadCache();
+		commentCache.reloadCache();
 	}
 
 	/**
@@ -439,5 +446,15 @@ public class MainFramework
 	public UserCache getUserCache()
 	{
 		return this.userCache;
+	}
+
+	public CommentDao getCommentDao()
+	{
+		return this.commentDao;
+	}
+
+	public CommentCache getCommentCache()
+	{
+		return this.commentCache;
 	}
 }
