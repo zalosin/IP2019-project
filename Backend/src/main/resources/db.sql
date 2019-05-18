@@ -20,3 +20,29 @@ CREATE TABLE newsbag_core.categories(
 	title VARCHAR(30) NOT NULL,
 	PRIMARY KEY(id)
 );
+
+-- CREATE USERS SQL SCRIPT
+CREATE TABLE newsbag_core.users(
+	id INT NOT NULL AUTO_INCREMENT,
+	username VARCHAR(30) NOT NULL,
+	password VARCHAR(30) NOT NULL,
+	PRIMARY KEY(id)
+);
+
+-- CREATE COMMENTS SQL SCRIPT
+CREATE TABLE newsbag_core.comments(
+	id INT NOT NULL AUTO_INCREMENT,
+	userId INT NOT NULL,
+	articleId INT NOT NULL,
+	text VARCHAR(250) NOT NULL,
+	PRIMARY KEY(id)
+);
+
+-- CREATE RATINGS SQL SCRIPT
+CREATE TABLE newsbag_core.ratings(
+	id INT NOT NULL AUTO_INCREMENT,
+	userId INT NOT NULL,
+	articleId INT NOT NULL,
+	value INT NOT NULL,
+	PRIMARY KEY(id)
+);
