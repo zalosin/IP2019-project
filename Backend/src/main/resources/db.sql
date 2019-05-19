@@ -4,7 +4,7 @@ CREATE SCHEMA newsbag_user1;
 CREATE SCHEMA newsbag_user2;
 
 -- CREATE ARTICLES SQL SCRIPT
-CREATE TABLE newsbag_core.articles(
+CREATE TABLE articles(
 	id INT NOT NULL AUTO_INCREMENT,
 	title VARCHAR(100) NOT NULL,
 	body TEXT(65535) NOT NULL,
@@ -15,14 +15,14 @@ CREATE TABLE newsbag_core.articles(
 );
 
 -- CREATE CATEGORIES SQL SCRIPT
-CREATE TABLE newsbag_core.categories(
+CREATE TABLE categories(
 	id INT NOT NULL AUTO_INCREMENT,
 	title VARCHAR(30) NOT NULL,
 	PRIMARY KEY(id)
 );
 
 -- CREATE USERS SQL SCRIPT
-CREATE TABLE newsbag_core.users(
+CREATE TABLE users(
 	id INT NOT NULL AUTO_INCREMENT,
 	username VARCHAR(30) NOT NULL,
 	password VARCHAR(30) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE newsbag_core.users(
 );
 
 -- CREATE COMMENTS SQL SCRIPT
-CREATE TABLE newsbag_core.comments(
+CREATE TABLE comments(
 	id INT NOT NULL AUTO_INCREMENT,
 	userId INT NOT NULL,
 	articleId INT NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE newsbag_core.comments(
 );
 
 -- CREATE RATINGS SQL SCRIPT
-CREATE TABLE newsbag_core.ratings(
+CREATE TABLE ratings(
 	id INT NOT NULL AUTO_INCREMENT,
 	userId INT NOT NULL,
 	articleId INT NOT NULL,
