@@ -43,6 +43,20 @@ public class ArticleHandler
 	}
 
 	/**
+	 * Constructor using fields
+	 * 
+	 * @param mainFramework
+	 * @param articleCache
+	 * @param articleDao
+	 */
+	public ArticleHandler(MainFramework mainFramework, ArticleCache articleCache, ArticleDao articleDao)
+	{
+		this.mainFramework = mainFramework;
+		this.articleCache = articleCache;
+		this.articleDao = articleDao;
+	}
+
+	/**
 	 * Returns all the cached articles
 	 * 
 	 * @return List<ArticleModel>
