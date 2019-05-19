@@ -99,7 +99,6 @@ public class UserHandler
 	}
 
 	@POST
-	@Secured
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createUser(final UserModel user) throws Exception

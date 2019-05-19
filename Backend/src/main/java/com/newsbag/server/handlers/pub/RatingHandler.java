@@ -32,6 +32,20 @@ public class RatingHandler
 		this.ratingCache = mainFramework.getRatingCache();
 		this.ratingDao = mainFramework.getRatingDao();
 	}
+	
+	/**
+	 * Constructor using fields
+	 * 
+	 * @param mainFramework
+	 * @param ratingCache
+	 * @param ratingDao
+	 */
+	public RatingHandler(MainFramework mainFramework, RatingCache ratingCache, RatingDao ratingDao)
+	{
+		this.mainFramework = mainFramework;
+		this.ratingCache = ratingCache;
+		this.ratingDao = ratingDao;
+	}
 
 	@GET
 	@Secured

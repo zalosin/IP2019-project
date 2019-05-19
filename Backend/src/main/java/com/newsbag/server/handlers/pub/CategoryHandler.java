@@ -33,6 +33,20 @@ public class CategoryHandler
 		this.categoryDao = mainFramework.getCategoryDao();
 	}
 
+	/**
+	 * Constructor using fields
+	 * 
+	 * @param mainFramework
+	 * @param categoryCache
+	 * @param categoryDao
+	 */
+	public CategoryHandler(MainFramework mainFramework, CategoryCache categoryCache, CategoryDao categoryDao)
+	{
+		this.mainFramework = mainFramework;
+		this.categoryCache = categoryCache;
+		this.categoryDao = categoryDao;
+	}
+
 	@GET
 	@Secured
 	@Path("/all")

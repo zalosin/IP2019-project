@@ -32,6 +32,21 @@ public class CommentHandlers
 		this.commentCache = mainFramework.getCommentCache();
 		this.commentDao = mainFramework.getCommentDao();
 	}
+	
+	
+	/**
+	 * Constructor using fields
+	 * 
+	 * @param mainFramework
+	 * @param commentCache
+	 * @param commentDao
+	 */
+	public CommentHandlers(MainFramework mainFramework, CommentCache commentCache, CommentDao commentDao)
+	{
+		this.mainFramework = mainFramework;
+		this.commentCache = commentCache;
+		this.commentDao = commentDao;
+	}
 
 	@GET
 	@Secured
