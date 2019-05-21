@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>WebMag HTML Template</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="../css/style.css" />
+
+	
+    <!-- React Plugins -->
+    
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src='https://unpkg.com/babel-standalone@6/babel.min.js'></script>
+     
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+
+	<div id='app'></div>
+
+	<script type='text/babel'>
+	
+	function Header(){
+			return(
+				<header id="header">
+					<div id="nav">
+						<div id="nav-fixed">
+							<div className="container">
+								<div className="nav-logo">
+									<a href="index.html" className="logo">The News Bag</a>
+								</div>
+
+								<ul id="category-navbar-ul" className="nav-menu nav navbar-nav">
+									<li><a href="category.html">Stiri recente</a></li>
+									<li><a href="category.html">Recomandari</a></li>
+									<li className="cat-1"><a href="category.html">Actualitate</a></li>
+									<li className="cat-2"><a href="category.html">Economie</a></li>
+									<li className="cat-3"><a href="category.html">Externe</a></li>
+									<li className="cat-4"><a href="category.html">Tech</a></li>
+									<li className="cat-1"><a href="category.html">Sport</a></li>
+								</ul>
+
+								<div className="nav-btns">
+									<a href="login.html">Login</a>
+									<button className="search-btn"><i className="fa fa-search"></i></button>
+									<div className="search-form">
+										<input className="search-input" type="text" name="search" placeholder="Enter Your Search ..."/>
+										<button className="search-close"><i className="fa fa-times"></i></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="page-header">
+						<div className="container">
+							<div className="row">
+								<div className="col-md-10">
+									<ul className="page-header-breadcrumb">
+										<li><a href="index.html">Home</a></li>
+										<li>Login</li>
+									</ul>
+									<h1>Login</h1>
+								</div>
+							</div>
+						</div>
+					</div>
+				</header>
+			)
+		}
+		
+
+		function Footer(props){
+			
+			return(
+				<footer id="footer">
+				<div className="container">
+					<div className="row">
+						<div className="col-md-5">
+							<div className="footer-widget">
+								<div className="footer-logo">
+									<a href="index.html" className="logo">The News Bag</a>
+								</div>
+								<ul className="footer-nav">
+									<li><a href="#">Termeni si conditii</a></li>
+									<li><a href="#">Politica de confidentialitate</a></li>
+								</ul>
+								<div className="footer-copyright">
+									<span value='Copyright plus date'>
+										Copyright + Date
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div className="col-md-4">
+							<div className="row">
+								<div className="col-md-6">
+									<div className="footer-widget">
+										<h3 className="footer-title">Despre noi</h3>
+										<ul className="footer-links">
+											<li><a href="about.html">Despre noi</a></li>
+											<li><a href="contact.html">Contact</a></li>
+										</ul>
+									</div>
+								</div>
+								<div className="col-md-6">
+									<div className="footer-widget">
+										<h3 className="footer-title">Widget here</h3>
+										<ul className="footer-links">
+											<li><a href="category.html">Widget nice goes here</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="col-md-3">
+							<div className="footer-widget">
+								<h3 className="footer-title">Join our Newsletter</h3>
+								<div className="footer-newsletter">
+									<form>
+										<input className="input" type="email" name="newsletter" placeholder="Enter your email"/>
+										<button className="newsletter-btn"><i className="fa fa-paper-plane"></i></button>
+									</form>
+								</div>
+								<ul className="footer-social">
+									<li><a href="#"><i className="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i className="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i className="fa fa-google-plus"></i></a></li>
+									<li><a href="#"><i className="fa fa-pinterest"></i></a></li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</footer>
+			)
+		}
+		
+		function Section(){
+			return(
+                <div className="section">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-8">
+                                <ul id="login-tabs" className="nav nav-tabs">
+                                    <li className=""><a data-toggle="tab" href="#login-tab" aria-expanded="true">Login</a></li>
+                                    <li className="active"><a data-toggle="tab" href="#register-tab"
+                                            aria-expanded="false">Inregistreaza-te</a></li>
+                                </ul>
+                                <div className="tab-content">
+                                    <div id="login-tab" className="tab-pane fade">
+                                        <h2>Esti utilizator inregistrat? Autentifica-te!</h2>
+                                        <form action="/login/" method="post" name="loginfrm" id="loginfrm" autocomplete="off">
+                                            <fieldset>
+                                                <p className="loginInput">
+                                                    <span className="colorblue top10">Username</span>
+                                                    <input className="username form-control mail " type="text" name="login" id="login"
+                                                        placeholder="Username"/>
+                                                    <span className="colorblue top10">Parola</span>
+                                                    <input type="password" name="passwd" id="passwd" className="pass form-control"
+                                                        placeholder="Parola"/>
+                                                </p>
+                                                <p>
+                                                    <label><input type="checkbox" checked="checked" id="save_login" value="openid"
+                                                            name="save_login"/><span>Pastreaza-ma logat</span></label>
+                                                    <input type="submit" id="doLogin" value="Intra in cont"/>
+                                                </p>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <div id="register-tab" className="tab-pane fade active in">
+                                        <h2>Completeaza campurile de mai jos.</h2>
+                                        <form action="/login/" method="post" name="registerfrm" id="registerfrm" autocomplete="off">
+                                            <fieldset>
+                                                <p className="loginInput">
+                                                    <span className="colorblue top10">Email</span>
+                                                    <input className="username form-control mail " type="text" name="login" id="login"
+                                                        placeholder="Email"/>
+                                                    <span className="colorblue top10">Parola</span>
+                                                    <input type="password" name="passwd" id="passwd" className="pass form-control"
+                                                        placeholder="Parola"/>
+                                                </p>
+                                                <p>
+                                                    <input type="submit" id="doRegister" value="Inregistreaza-ma"/>
+                                                </p>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			)
+		}
+
+		class App extends React.Component {
+			render(){
+				return (
+                    
+					<div>
+					<Header/>
+					<Section/>
+					<Footer/>
+					</div>
+				)
+			}
+		}
+	
+		ReactDOM.render(
+		  <App />,
+		  document.getElementById('app')
+		)
+</script>
+</body>
+
+</html>
