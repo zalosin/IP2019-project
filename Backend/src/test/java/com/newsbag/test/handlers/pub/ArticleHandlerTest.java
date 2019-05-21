@@ -3,6 +3,7 @@ package com.newsbag.test.handlers.pub;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -73,6 +74,21 @@ public class ArticleHandlerTest
 		final ArticleModel returnedArticle = (ArticleModel) articleHandler.getArticleById(0).getEntity();
 		
 		assertEquals(get3DummyArticles().get(0), returnedArticle);
+	}
+	
+	@Test
+	public void testGetReccomendedArticles()
+	{
+		Mockito.when(recombeeDao.getReccomendedArticlesForUser(Mockito.anyInt())).thenReturn(Arrays.asList(1,2,3));
+		Mockito.when(articleCache.getArticleByIds(Arrays.asList(1,2,3,4))).thenReturn(get3DummyArticles());
+		
+		final List<ArticleModel> returnedRecommendedArticles = articleHandler.getRecommendedArticles(0);
+		
+		int i = 0;
+		for (ArticleModel article : returnedRecommendedArticles)
+		{
+			assertEquals(article, get3DummyArticles().get(i++));
+		}
 	}
 
 	private List<ArticleModel> get3DummyArticles()

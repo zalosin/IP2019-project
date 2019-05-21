@@ -10,7 +10,6 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.ext.Provider;
 import javax.ws.rs.core.Response;
 
-import com.newsbag.server.cache.UserCache;
 import com.newsbag.server.core.MainFramework;
 
 @Secured
@@ -18,11 +17,9 @@ import com.newsbag.server.core.MainFramework;
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter
 {
-	private final MainFramework mainFramework;
-	
+
 	public AuthenticationFilter()
 	{
-		this.mainFramework = MainFramework.getInstance();
 	}
 
 	@Override
