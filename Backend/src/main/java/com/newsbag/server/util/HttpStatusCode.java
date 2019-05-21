@@ -8,7 +8,7 @@ package com.newsbag.server.util;
  */
 public enum HttpStatusCode
 {
-	BAD_REQUEST(401),
+	BAD_REQUEST(403),
 	NOT_FOUND(404);
 
 	private int statusCode;

@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import com.newsbag.server.cache.ArticleCache;
 import com.newsbag.server.core.MainFramework;
 import com.newsbag.server.dao.ArticleDao;
+import com.newsbag.server.dao.RecombeeDao;
 import com.newsbag.server.model.ArticleModel;
 import com.newsbag.server.util.HttpStatusCode;
 
@@ -31,6 +32,7 @@ public class ArticleHandler
 	private final MainFramework mainFramework;
 	private final ArticleCache articleCache;
 	private final ArticleDao articleDao;
+	private final RecombeeDao recombeeDao;
 
 	/**
 	 * Constructor
@@ -40,6 +42,7 @@ public class ArticleHandler
 		this.mainFramework = MainFramework.getInstance();
 		this.articleCache = mainFramework.getArticleCache();
 		this.articleDao = mainFramework.getArticleDao();
+		this.recombeeDao = mainFramework.getRecombeeDao();
 	}
 
 	/**
@@ -48,12 +51,14 @@ public class ArticleHandler
 	 * @param mainFramework
 	 * @param articleCache
 	 * @param articleDao
+	 * @param recombeeDao
 	 */
-	public ArticleHandler(MainFramework mainFramework, ArticleCache articleCache, ArticleDao articleDao)
+	public ArticleHandler(MainFramework mainFramework, ArticleCache articleCache, ArticleDao articleDao, RecombeeDao recombeeDao)
 	{
 		this.mainFramework = mainFramework;
 		this.articleCache = articleCache;
 		this.articleDao = articleDao;
+		this.recombeeDao = recombeeDao;
 	}
 
 	/**
@@ -91,6 +96,22 @@ public class ArticleHandler
 		}
 		
 		return Response.ok(articleCache.getArticleById(articleId)).build();
+	}
+	
+	/**
+	 * Returns recommended articles by id
+	 * 
+	 * @param userId
+	 * @return Response
+	 */
+	@GET
+	@Path("/reccomended/{userId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ArticleModel>  getRecommendedArticles(@PathParam("userId") final int userId)
+	{
+		final List<Integer> recommendedArticleIds = recombeeDao.getReccomendedArticlesForUser(userId);
+		
+		return articleCache.getArticleByIds(recommendedArticleIds);
 	}
 
 	/**

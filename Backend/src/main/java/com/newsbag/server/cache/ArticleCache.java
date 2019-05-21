@@ -17,7 +17,7 @@ public class ArticleCache extends AbstractCache
 	private List<ArticleModel> cachedArticles = new ArrayList<ArticleModel>();
 
 	private final ArticleDao articleDao;
-	
+
 	/**
 	 * Constructor
 	 *
@@ -37,7 +37,7 @@ public class ArticleCache extends AbstractCache
 		cachedArticles.clear();
 		cachedArticles = articleDao.getAllArticles();
 	}
-	
+
 	/**
 	 * Returns all the cached articles
 	 * 
@@ -47,7 +47,7 @@ public class ArticleCache extends AbstractCache
 	{
 		return cachedArticles;
 	}
-	
+
 	/**
 	 * Returns article by id
 	 * 
@@ -56,16 +56,36 @@ public class ArticleCache extends AbstractCache
 	 */
 	public synchronized ArticleModel getArticleById(final int articleId)
 	{
-		for(ArticleModel articleModel : cachedArticles)
+		for (ArticleModel articleModel : cachedArticles)
 		{
-			if(articleId == articleModel.getId())
+			if (articleId == articleModel.getId())
 			{
 				return articleModel;
 			}
 		}
-		
+
 		return null;
 	}
-	
-	
+
+	/**
+	 * Returns all the articles given a list of ids
+	 * 
+	 * @param articleIds
+	 * @return List<ArticleModel>
+	 */
+	public synchronized List<ArticleModel> getArticleByIds(final List<Integer> articleIds)
+	{
+		final List<ArticleModel> articles = new ArrayList<ArticleModel>();
+
+		for (ArticleModel article : articles)
+		{
+			if (articleIds.contains(article.getId()))
+			{
+				articles.add(article);
+			}
+		}
+
+		return articles;
+	}
+
 }

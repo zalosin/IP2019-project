@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import com.newsbag.server.cache.RatingCache;
 import com.newsbag.server.core.MainFramework;
 import com.newsbag.server.dao.RatingDao;
+import com.newsbag.server.dao.RecombeeDao;
 import com.newsbag.server.model.RatingModel;
 import com.newsbag.server.util.HttpStatusCode;
 
@@ -25,12 +26,14 @@ public class RatingHandler
 	private final MainFramework mainFramework;
 	private final RatingCache ratingCache;
 	private final RatingDao ratingDao;
+	private final RecombeeDao recombeeDao;
 
 	public RatingHandler()
 	{
 		this.mainFramework = MainFramework.getInstance();
 		this.ratingCache = mainFramework.getRatingCache();
 		this.ratingDao = mainFramework.getRatingDao();
+		this.recombeeDao = mainFramework.getRecombeeDao();
 	}
 	
 	/**
@@ -39,12 +42,14 @@ public class RatingHandler
 	 * @param mainFramework
 	 * @param ratingCache
 	 * @param ratingDao
+	 * @param recombeeDao
 	 */
-	public RatingHandler(MainFramework mainFramework, RatingCache ratingCache, RatingDao ratingDao)
+	public RatingHandler(MainFramework mainFramework, RatingCache ratingCache, RatingDao ratingDao, RecombeeDao recombeeDao)
 	{
 		this.mainFramework = mainFramework;
 		this.ratingCache = ratingCache;
 		this.ratingDao = ratingDao;
+		this.recombeeDao = recombeeDao;
 	}
 
 	@GET
@@ -100,7 +105,7 @@ public class RatingHandler
 	}
 
 	@POST
-	@Secured
+//	@Secured
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createRating(final RatingModel rating) throws Exception
@@ -111,6 +116,8 @@ public class RatingHandler
 		}
 		
 		ratingDao.createRating(rating);
+		recombeeDao.trainRecombeeByUserRating(rating);
+		
 		ratingCache.reloadCache();
 		
 		return Response.ok().build();

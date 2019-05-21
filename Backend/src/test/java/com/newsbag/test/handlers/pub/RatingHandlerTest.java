@@ -10,6 +10,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.newsbag.server.cache.RatingCache;
 import com.newsbag.server.core.MainFramework;
 import com.newsbag.server.dao.RatingDao;
+import com.newsbag.server.dao.RecombeeDao;
 import com.newsbag.server.handlers.pub.RatingHandler;
 
 /**
@@ -30,6 +31,9 @@ public class RatingHandlerTest
 	@Mock
 	private RatingDao ratingDao;
 	
+	@Mock
+	private RecombeeDao recombeeDao;
+	
 	
 	private RatingHandler ratingHandler;
 
@@ -38,7 +42,7 @@ public class RatingHandlerTest
 	{
 		MockitoAnnotations.initMocks(this);
 
-		ratingHandler = new RatingHandler(mainFramework, ratingCache, ratingDao);
+		ratingHandler = new RatingHandler(mainFramework, ratingCache, ratingDao, recombeeDao);
 	}
 	
 	@Test

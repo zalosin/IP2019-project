@@ -19,6 +19,7 @@ import com.newsbag.server.dao.ArticleDao;
 import com.newsbag.server.dao.CategoryDao;
 import com.newsbag.server.dao.CommentDao;
 import com.newsbag.server.dao.RatingDao;
+import com.newsbag.server.dao.RecombeeDao;
 import com.newsbag.server.dao.UserDao;
 import com.newsbag.server.util.DatabaseConnectorSource;
 
@@ -89,6 +90,7 @@ public class MainFramework
 	private UserDao userDao;
 	private CommentDao commentDao;
 	private RatingDao ratingDao;
+	private RecombeeDao recombeeDao;
 
 	/**
 	 * CACHEs
@@ -314,6 +316,7 @@ public class MainFramework
 		userDao = new UserDao();
 		commentDao = new CommentDao();
 		ratingDao = new RatingDao();
+		recombeeDao = new RecombeeDao();
 	}
 
 	/**
@@ -473,5 +476,10 @@ public class MainFramework
 	public RatingCache getRatingCache()
 	{
 		return this.ratingCache;
+	}
+	
+	public RecombeeDao getRecombeeDao()
+	{
+		return this.recombeeDao;
 	}
 }

@@ -16,6 +16,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.newsbag.server.cache.ArticleCache;
 import com.newsbag.server.core.MainFramework;
 import com.newsbag.server.dao.ArticleDao;
+import com.newsbag.server.dao.RecombeeDao;
 import com.newsbag.server.handlers.pub.ArticleHandler;
 import com.newsbag.server.model.ArticleModel;
 
@@ -36,6 +37,9 @@ public class ArticleHandlerTest
 
 	@Mock
 	private MainFramework mainFramework;
+	
+	@Mock
+	private RecombeeDao recombeeDao;
 
 	private ArticleHandler articleHandler;
 
@@ -43,7 +47,7 @@ public class ArticleHandlerTest
 	public void setup()
 	{
 		MockitoAnnotations.initMocks(this);
-		articleHandler = new ArticleHandler(mainFramework, articleCache, articleDao);
+		articleHandler = new ArticleHandler(mainFramework, articleCache, articleDao, recombeeDao);
 		
 		Mockito.when(articleCache.getAllCachedArticles()).thenReturn(get3DummyArticles());
 		Mockito.when(articleCache.getArticleById(Mockito.anyInt())).thenReturn(get3DummyArticles().get(0));

@@ -19,19 +19,19 @@ import com.newsbag.server.core.MainFramework;
 public class AuthenticationFilter implements ContainerRequestFilter
 {
 	private final MainFramework mainFramework;
-	private final UserCache userCache;
 	
 	public AuthenticationFilter()
 	{
 		this.mainFramework = MainFramework.getInstance();
-		this.userCache = mainFramework.getUserCache();
 	}
 
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException
 	{
 		String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
-		if (!userCache.validateToken(authorizationHeader)) {
+		// retrieving the user cache everytime, 
+		// as it can happen to not have the user cache instantiated already when instantiating the filter
+		if (!MainFramework.getInstance().getUserCache().validateToken(authorizationHeader)) {
 			requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
 		}
     }
