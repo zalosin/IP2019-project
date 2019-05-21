@@ -106,8 +106,9 @@ public class ArticleHandler
 	 */
 	@GET
 	@Path("/reccomended/{userId}")
+	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ArticleModel>  getRecommendedArticles(@PathParam("userId") final int userId)
+	public List<ArticleModel> getRecommendedArticles(@PathParam("userId") final int userId)
 	{
 		final List<Integer> recommendedArticleIds = recombeeDao.getReccomendedArticlesForUser(userId);
 		

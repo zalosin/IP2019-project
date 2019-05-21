@@ -105,7 +105,7 @@ public class RatingHandler
 	}
 
 	@POST
-//	@Secured
+	@Secured
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createRating(final RatingModel rating) throws Exception
