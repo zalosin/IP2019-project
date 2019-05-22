@@ -15,6 +15,7 @@ function getArticles() {
                     renderArticles(articles);
                     renderEditorChoices(articles);
                     renderMostRead(articles);
+                    stopLoader(true);
             })
     }
 
@@ -174,6 +175,14 @@ function renderSearched(arr) {
                         </div>
                     </div>`
         $('#search-result-div').append(el1);
+    }
+}
+function stopLoader(bool){
+    if (bool){
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("header").style.display = "block";
+        document.getElementById("main-page").style.display = "block";
+        document.getElementById("footer").style.display = "block";
     }
 }
 getArticles();
