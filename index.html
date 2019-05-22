@@ -58,7 +58,7 @@
 						<a href="login.html">Login</a>
 						<button class="search-btn"><i class="fa fa-search"></i></button>
 						<div class="search-form">
-							<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
+							<input class="search-input" onkeydown="search(this)"  type="text" name="search" placeholder="Enter Your Search ...">
 							<button class="search-close"><i class="fa fa-times"></i></button>
 						</div>
 					</div>
@@ -174,8 +174,8 @@
 	</div>
 	<!-- /section -->
 
-	<!-- Footer -->
-	<footer id="footer">
+    <!-- Footer -->
+    <footer id="footer">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -186,14 +186,13 @@
 							<a href="index.html" class="logo">The News Bag</a>
 						</div>
 						<ul class="footer-nav">
-							<li><a href="#">Termeni si conditii</a></li>
 							<li><a href="#">Politica de confidentialitate</a></li>
+							<li><a href="#">Reclama</a></li>
 						</ul>
 						<div class="footer-copyright">
-							<span>&copy;
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;
-								<script>document.write(new Date().getFullYear());</script> All rights reserved</span>
+							<span>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Toate drepturile rezervate | Model creat cu <i class="fa fa-heart-o" aria-hidden="true"></i> de catre <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
 						</div>
 					</div>
 				</div>
@@ -205,16 +204,18 @@
 								<h3 class="footer-title">Despre noi</h3>
 								<ul class="footer-links">
 									<li><a href="about.html">Despre noi</a></li>
+									<li><a href="#">Alatura-te</a></li>
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="footer-widget">
-								<h3 class="footer-title">Widget here</h3>
-								<ul class="footer-links">
-									<li><a href="category.html">Widget nice goes here</a></li>
-								</ul>
+								<h3 class="footer-title">Categorii</h3>
+								<div class="category-widget">
+									<ul id="footer-category-ul">
+										</ul>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -222,7 +223,7 @@
 
 				<div class="col-md-3">
 					<div class="footer-widget">
-						<h3 class="footer-title">Join our Newsletter</h3>
+						<h3 class="footer-title">Abonati-va la buletinul informativ</h3>
 						<div class="footer-newsletter">
 							<form>
 								<input class="input" type="email" name="newsletter" placeholder="Enter your email">

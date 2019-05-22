@@ -1,5 +1,6 @@
+let url = "https://cors-anywhere.herokuapp.com/http://newsbagserver.herokuapp.com/article/all";
+
 function getArticles() {
-    let url = "https://cors-anywhere.herokuapp.com/http://newsbagserver.herokuapp.com/article/all";
 
     fetch(url)
         .then((response) => {
@@ -9,9 +10,11 @@ function getArticles() {
         })
         .then((json) => {
             let articles = json;
-            renderArticles(articles);
-            renderEditorChoices(articles);
-            renderMostRead(articles);
+            if ( window.location.pathname.indexOf("index.html") > -1 ){
+                renderArticles(articles);
+                renderEditorChoices(articles);
+                renderMostRead(articles);
+            }
         })
 
     let url2 = "https://cors-anywhere.herokuapp.com/http://newsbagserver.herokuapp.com/category/all";
@@ -112,6 +115,7 @@ function renderCategories(arr){
         let div2 = `<li><a href="#" class="cat-"`+arr[i].id+`>`+title+`<span>340</span></a></li>`;
         $("#category-navbar-ul").append(div);
         $("#bottom-category-ul").append(div2);
+        $("#footer-category-ul").append(div);
     }
 }
 
@@ -119,4 +123,8 @@ function ca(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-getArticles();
+function search(elem){
+    if(event.key === 'Enter') {
+        window.location.replace("search-results.html?search="+elem.value);
+    }
+}

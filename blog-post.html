@@ -36,6 +36,7 @@
 
 	<!-- Header -->
 	<header id="header">
+		<!-- Nav -->
 		<div id="nav">
 			<!-- Main Nav -->
 			<div id="nav-fixed">
@@ -47,14 +48,10 @@
 					<!-- /logo -->
 
 					<!-- nav -->
-					<ul class="nav-menu nav navbar-nav">
+					<ul id="category-navbar-ul" class="nav-menu nav navbar-nav">
 						<li><a href="category.html">Stiri recente</a></li>
 						<li><a href="category.html">Recomandari</a></li>
-						<li class="cat-1"><a href="category.html">Actualitate</a></li>
-						<li class="cat-2"><a href="category.html">Economie</a></li>
-						<li class="cat-3"><a href="category.html">Externe</a></li>
-						<li class="cat-4"><a href="category.html">Tech</a></li>
-						<li class="cat-1"><a href="category.html">Sport</a></li>
+
 					</ul>
 					<!-- /nav -->
 
@@ -63,7 +60,7 @@
 						<a href="login.html">Login</a>
 						<button class="search-btn"><i class="fa fa-search"></i></button>
 						<div class="search-form">
-							<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
+							<input class="search-input" onkeydown="search(this)"  type="text" name="search" placeholder="Enter Your Search ...">
 							<button class="search-close"><i class="fa fa-times"></i></button>
 						</div>
 					</div>
@@ -80,10 +77,6 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10">
-						<div class="post-meta">
-							<a class="post-category cat-2" href="category.html">JavaScript</a>
-							<span class="post-date">March 27, 2018</span>
-						</div>
 						<h1>Ask HN: Does Anybody Still Use JQuery?</h1>
 					</div>
 				</div>
@@ -103,51 +96,8 @@
 				<div class="col-md-8">
 					<div class="section-row sticky-container">
 						<div class="main-post">
-							<h3>Lorem Ipsum: when, and when not to use it</h3>
-							<p>Do you like Cheese Whiz? Spray tan? Fake eyelashes? That's what is Lorem Ipsum to many—it rubs them the
-								wrong way, all the way. It's unreal, uncanny, makes you wonder if something is wrong, it seems to seek
-								your attention for all the wrong reasons. Usually, we prefer the real thing, wine without sulfur based
-								preservatives, real butter, not margarine, and so we'd like our layouts and designs to be filled with
-								real words, with thoughts that count, information that has value. </p>
-							<p>The toppings you may chose for that TV dinner pizza slice when you forgot to shop for foods, the paint
-								you may slap on your face to impress the new boss is your business. But what about your daily bread?
-								Design comps, layouts, wireframes—will your clients accept that you go about things the facile way?
-								Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to
-								forswear forever. Not so fast, I'd say, there are some redeeming factors in favor of greeking text, as
-								its use is merely the symptom of a worse problem to take into consideration.</p>
-							<figure class="figure-img">
-								<img class="img-responsive" src="./img/post-4.jpg" alt="">
-								<figcaption>So Lorem Ipsum is bad (not necessarily)</figcaption>
-							</figure>
-							<p>You begin with a text, you sculpt information, you chisel away what's not needed, you come to the
-								point, make things clear, add value, you're a content person, you like words. Design is no afterthought,
-								far from it, but it comes in a deserved second. Anyway, you still use Lorem Ipsum and rightly so, as it
-								will always have a place in the web workers toolbox, as things happen, not always the way you like it,
-								not always in the preferred order. Even if your less into design and more into content strategy you may
-								find some redeeming value with, wait for it, dummy copy, no less.</p>
-							<p>There's lot of hate out there for a text that amounts to little more than garbled words in an old
-								language. The villagers are out there with a vengeance to get that Frankenstein, wielding torches and
-								pitchforks, wanting to tar and feather it at the least, running it out of town in shame.</p>
-							<p>One of the villagers, Kristina Halvorson from Adaptive Path, holds steadfastly to the notion that
-								design can’t be tested without real content:</p>
-							<blockquote class="blockquote">
-								I’ve heard the argument that “lorem ipsum” is effective in wireframing or design because it helps people
-								focus on the actual layout, or color scheme, or whatever. What kills me here is that we’re talking about
-								creating a user experience that will (whether we like it or not) be DRIVEN by words. The entire
-								structure of the page or app flow is FOR THE WORDS.
-							</blockquote>
-							<p>If that's what you think how bout the other way around? How can you evaluate content without design? No
-								typography, no colors, no layout, no styles, all those things that convey the important signals that go
-								beyond the mere textual, hierarchies of information, weight, emphasis, oblique stresses, priorities, all
-								those subtle cues that also have visual and emotional appeal to the reader. Rigid proponents of content
-								strategy may shun the use of dummy copy but then designers might want to ask them to provide style
-								sheets with the copy decks they supply that are in tune with the design direction they require.</p>
-							<h3>Summing up, if the copy is diverting attention from the design it’s because it’s not up to task.</h3>
-							<p>Typographers of yore didn't come up with the concept of dummy copy because people thought that content
-								is inconsequential window dressing, only there to be used by designers who can’t be bothered to read.
-								Lorem Ipsum is needed because words matter, a lot. Just fill up a page with draft copy about the
-								client’s business and they will actually read it and comment on it. They will be drawn to it, fiercely.
-								Do it the wrong way and draft copy can derail your design review.</p>
+							<h3>">>>>TITLE GOES HERE<<<<"</h3>
+							<p>>>>BODY GOES HERE<<<</p>
 						</div>
 						<div class="post-shares sticky-shares">
 							<a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
@@ -161,7 +111,7 @@
 
 					<!-- ad -->
 					<div class="section-row text-center">
-						<label for="input-1" class="control-label">Rate This</label>
+						<label for="input-1" class="control-label">Da o nota</label>
 						<input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
 					</div>
 					<!-- ad -->
@@ -194,7 +144,7 @@
 					<!-- comments -->
 					<div class="section-row">
 						<div class="section-title">
-							<h2>3 Comments</h2>
+							<h2>3 Comentarii</h2>
 						</div>
 
 						<div class="post-comments">
@@ -258,14 +208,14 @@
 					<!-- reply -->
 					<div class="section-row">
 						<div class="section-title">
-							<h2>Leave a reply</h2>
-							<p>your email address will not be published. required fields are marked *</p>
+							<h2>Lasa un comentariu</h2>
+							<p>adresa ta de email nu va fi publicata. campurile necesare sunt marcate cu *</p>
 						</div>
 						<form class="post-reply">
 							<div class="row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<span>Name *</span>
+										<span>Nume *</span>
 										<input class="input" type="text" name="name">
 									</div>
 								</div>
@@ -283,9 +233,9 @@
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<textarea class="input" name="message" placeholder="Message"></textarea>
+										<textarea class="input" name="message" placeholder="Mesaj"></textarea>
 									</div>
-									<button class="primary-button">Submit</button>
+									<button class="primary-button">Trimite</button>
 								</div>
 							</div>
 						</form>
@@ -307,7 +257,7 @@
 					<!-- post widget -->
 					<div class="aside-widget">
 						<div class="section-title">
-							<h2>Most Read</h2>
+							<h2>Cele mai citite</h2>
 						</div>
 
 						<div class="post post-widget">
@@ -347,7 +297,7 @@
 					<!-- post widget -->
 					<div class="aside-widget">
 						<div class="section-title">
-							<h2>Featured Posts</h2>
+							<h2>Articole recomandate</h2>
 						</div>
 						<div class="post post-thumb">
 							<a class="post-img" href="blog-post.html"><img src="./img/post-2.jpg" alt=""></a>
@@ -377,14 +327,14 @@
 					<div class="aside-widget">
 						<div class="section-title">
 							<h2>Categorii</h2>
+							<div class="category-widget">
+									<ul id="bottom-category-ul">
+									</ul>
+							</div>
 						</div>
 						<div class="category-widget">
 							<ul>
-								<li><a href="#" class="cat-1">Actualitate<span>340</span></a></li>
-								<li><a href="#" class="cat-2">Economie<span>74</span></a></li>
-								<li><a href="#" class="cat-4">Externe<span>41</span></a></li>
-								<li><a href="#" class="cat-3">Tech<span>35</span></a></li>
-								<li><a href="#" class="cat-1">Sport<span>340</span></a></li>
+								de preluat din baza de date
 							</ul>
 						</div>
 					</div>
@@ -411,7 +361,7 @@
 					<!-- archive -->
 					<div class="aside-widget">
 						<div class="section-title">
-							<h2>Arhive</h2>
+							<h2>Arhiva</h2>
 						</div>
 						<div class="archive-widget">
 							<ul>
@@ -432,74 +382,75 @@
 	<!-- /section -->
 
 	<!-- Footer -->
-	<footer id="footer">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<div class="col-md-5">
-					<div class="footer-widget">
-						<div class="footer-logo">
-							<a href="index.html" class="logo">The News Bag</a>
-						</div>
-						<ul class="footer-nav">
-							<li><a href="#">Termeni si conditii</a></li>
-							<li><a href="#">Politica de confidentialitate</a></li>
-						</ul>
-						<div class="footer-copyright">
-							<span>&copy;
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;
-								<script>document.write(new Date().getFullYear());</script> All rights reserved</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="footer-widget">
-								<h3 class="footer-title">Despre noi</h3>
-								<ul class="footer-links">
-									<li><a href="about.html">Despre noi</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
+    <footer id="footer">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-5">
+						<div class="footer-widget">
+							<div class="footer-logo">
+								<a href="index.html" class="logo">The News Bag</a>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="footer-widget">
-								<h3 class="footer-title">Widget here</h3>
-								<ul class="footer-links">
-									<li><a href="category.html">Widget nice goes here</a></li>
-								</ul>
+							<ul class="footer-nav">
+								<li><a href="#">Politica de confidentialitate</a></li>
+								<li><a href="#">Reclama</a></li>
+							</ul>
+							<div class="footer-copyright">
+								<span>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> Toate drepturile rezervate | Model creat cu <i class="fa fa-heart-o" aria-hidden="true"></i> de catre <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-md-3">
-					<div class="footer-widget">
-						<h3 class="footer-title">Join our Newsletter</h3>
-						<div class="footer-newsletter">
-							<form>
-								<input class="input" type="email" name="newsletter" placeholder="Enter your email">
-								<button class="newsletter-btn"><i class="fa fa-paper-plane"></i></button>
-							</form>
+	
+					<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="footer-widget">
+									<h3 class="footer-title">Despre noi</h3>
+									<ul class="footer-links">
+										<li><a href="about.html">Despre noi</a></li>
+										<li><a href="#">Alatura-te</a></li>
+										<li><a href="contact.html">Contact</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="footer-widget">
+									<h3 class="footer-title">Categorii</h3>
+									<div class="category-widget">
+										<ul id="footer-category-ul">
+											</ul>
+									</div>
+								</div>
+							</div>
 						</div>
-						<ul class="footer-social">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-						</ul>
 					</div>
+	
+					<div class="col-md-3">
+						<div class="footer-widget">
+							<h3 class="footer-title">Abonati-va la buletinul informativ</h3>
+							<div class="footer-newsletter">
+								<form>
+									<input class="input" type="email" name="newsletter" placeholder="Enter your email">
+									<button class="newsletter-btn"><i class="fa fa-paper-plane"></i></button>
+								</form>
+							</div>
+							<ul class="footer-social">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							</ul>
+						</div>
+					</div>
+	
 				</div>
-
+				<!-- /row -->
 			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</footer>
+			<!-- /container -->
+		</footer>
 	<!-- /Footer -->
 
 	<!-- jQuery Plugins -->
@@ -508,6 +459,7 @@
 	<script src="js/main.js"></script>
 	<script src="js/star-rating.min.js"></script>
 	<script src="js/rate-script.js"></script>
+	<script src="js/script.js"></script>
 
 </body>
 
