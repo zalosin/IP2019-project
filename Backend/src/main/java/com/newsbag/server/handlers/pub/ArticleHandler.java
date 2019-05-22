@@ -82,7 +82,6 @@ public class ArticleHandler
 	 * @return
 	 */
 	@GET
-	@Secured
 	@Path("/{articleId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getArticleById(@PathParam("articleId") final int articleId)

@@ -79,8 +79,8 @@ public class MainFramework
 	// Connectors map
 	private Map<DatabaseConnectorSource, DatabaseConnector> dbConnectors;
 
-	// TODO make it configurable
-	public boolean isLocal = true;
+	// TODO make it configurable / DEFAULT FOR HEROKU
+	public boolean isLocal = false;
 
 	/**
 	 * DAOs
