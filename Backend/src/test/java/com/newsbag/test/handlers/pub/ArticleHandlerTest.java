@@ -95,9 +95,9 @@ public class ArticleHandlerTest
 	{
 		List<ArticleModel> articles = new ArrayList<ArticleModel>();
 
-		articles.add(new ArticleModel(0, "title1", "body1", 1, 2, 3));
-		articles.add(new ArticleModel(1, "title2", "body2", 11, 22, 33));
-		articles.add(new ArticleModel(2, "title2", "body3", 111, 222, 333));
+		articles.add(new ArticleModel(0, "title1", "body1", 1, 2, 3, null));
+		articles.add(new ArticleModel(1, "title2", "body2", 11, 22, 33, null));
+		articles.add(new ArticleModel(2, "title2", "body3", 111, 222, 333, null));
 
 		return articles;
 	}

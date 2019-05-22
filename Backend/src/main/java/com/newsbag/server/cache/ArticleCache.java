@@ -77,7 +77,7 @@ public class ArticleCache extends AbstractCache
 	{
 		final List<ArticleModel> articles = new ArrayList<ArticleModel>();
 
-		for (ArticleModel article : articles)
+		for (ArticleModel article : cachedArticles)
 		{
 			if (articleIds.contains(article.getId()))
 			{
