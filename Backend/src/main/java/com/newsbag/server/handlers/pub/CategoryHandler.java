@@ -48,7 +48,6 @@ public class CategoryHandler
 	}
 
 	@GET
-	@Secured
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<CategoryModel> getAllCategories()

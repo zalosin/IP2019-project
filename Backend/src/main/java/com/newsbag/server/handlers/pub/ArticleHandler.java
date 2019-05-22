@@ -67,7 +67,6 @@ public class ArticleHandler
 	 * @return List<ArticleModel>
 	 */
 	@GET
-	@Secured
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ArticleModel> getAllArticles()
