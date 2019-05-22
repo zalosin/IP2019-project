@@ -42,7 +42,7 @@ function renderArticles(arr) {
                             <a class="post-category cat-1" href="category.html">Actualitate</a>
                             <span class="post-date">` + date_string + `</span>
                         </div>
-                        <h3 class="post-title">` + arr[i].title + `</h3>
+                        <a href="blog-post.html?id=`+arr[i].id+`"><h3 class="post-title">` + arr[i].title + `</h3></a>
                     </div>
                 </div>
             </div>`;
@@ -57,13 +57,13 @@ function renderEditorChoices(arr) {
     var date_string = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
     let div = `<div id="editor-0" class="col-md-8">
                     <div class="post post-thumb">
-                        <a class="post-img" href="blog-post.html"><img src="./img/stire-1.jpg" alt=""></a>
+                        <a class="post-img" href="blog-post.html?id=`+arr[rndStory].id+`"><img src="./img/stire-1.jpg" alt=""></a>
                         <div class="post-body">
                             <div class="post-meta">
                                 <a class="post-category cat-1" href="category.html">Actualitate</a>
                                 <span class="post-date">` + date_string + `</span>
                             </div>
-                            <h3 class="post-title"><a href="blog-post.html">` + arr[rndStory].title + `</a></h3>
+                            <h3 class="post-title"><a href="blog-post.html?id=`+arr[rndStory].id+`">` + arr[rndStory].title + `</a></h3>
                         </div>
                     </div>
                 </div>`
@@ -75,9 +75,9 @@ function renderEditorChoices(arr) {
         date.setUTCSeconds(arr[rndStory].createTime);
         var date_string = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
         let div = `<div id="editor-"`+i+` class="post post-widget">
-                        <a class="post-img" href="blog-post.html"><img src="./img/stire-2.jpg" alt=""></a>
+                        <a class="post-img" href="blog-post.html?id=`+arr[rndStory].id+`"><img src="./img/stire-2.jpg" alt=""></a>
                         <div class="post-body">
-                            <h3 class="post-title"><a href="blog-post.html">`+arr[rndStory].title+`</a></h3>
+                            <h3 class="post-title"><a href="blog-post.html?id=`+arr[rndStory].id+`">`+arr[rndStory].title+`</a></h3>
                         </div>
                     </div>`
         $("#editor-aside-div").append(div);
@@ -93,13 +93,13 @@ function renderMostRead(arr) {
 
         let el1 = `<div id="mostRead-"` + i + ` class="col-md-12">
                         <div class="post post-row">
-                            <a class="post-img" href="blog-post.html"><img src="./img/post-4.jpg" alt=""></a>
+                            <a class="post-img" href="blog-post.html?id=`+arr[rndStory].id+`"><img src="./img/post-4.jpg" alt=""></a>
                             <div class="post-body">
                                 <div class="post-meta">
                                     <a class="post-category cat-2" href="category.html">JavaScript</a>
                                     <span class="post-date">` + date_string + `</span>
                                 </div>
-                                <h3 class="post-title"><a href="blog-post.html">` + arr[rndStory].title + `</a></h3>
+                                <h3 class="post-title"><a href="blog-post.html?id=`+arr[rndStory].id+`">` + arr[rndStory].title + `</a></h3>
                                 <p class="truncate" id="body">` + arr[rndStory].body.substr(0, 100) + "..." + `</p>
                             </div>
                         </div>

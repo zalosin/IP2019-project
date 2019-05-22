@@ -13,8 +13,10 @@ fetch(url)
             var date = new Date(0);
             date.setUTCSeconds(article.createTime);
             var date_string = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+            let el1 = `<h1>`+article.title+`</h1>`
             let el = `  <h3>`+ article.title +`</h3>
                         <p>`+ article.body +`</p>`;
-            $('#render-post').append(el1);
+            $('#render-post').append(el);
+            $('#big-title').append(el1);
     })})
     
