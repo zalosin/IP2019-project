@@ -9,6 +9,7 @@ import com.recombee.api_client.api_requests.AddPurchase;
 import com.recombee.api_client.api_requests.Batch;
 import com.recombee.api_client.api_requests.RecommendItemsToUser;
 import com.recombee.api_client.api_requests.Request;
+import com.recombee.api_client.api_requests.UserBasedRecommendation;
 import com.recombee.api_client.bindings.Recommendation;
 import com.recombee.api_client.bindings.RecommendationResponse;
 import com.recombee.api_client.exceptions.ApiException;
@@ -80,8 +81,8 @@ public class RecombeeDao
 		{
 			RecombeeClient client = new RecombeeClient(RECOMBEE_DB_ID, RECOMBEE_DB_PRIVATE_TOKEN);
 
-			RecommendationResponse recommendationResponse = client.send(
-					new RecommendItemsToUser(String.format("user-%s", userId), NUMBER_OF_RECCOMANDATIONS_TO_RETRIEVE));
+			Recommendation[] recommendationResponse = client.send(
+					new UserBasedRecommendation(String.format("user-%s", userId), NUMBER_OF_RECCOMANDATIONS_TO_RETRIEVE));
 
 			for (Recommendation rec : recommendationResponse)
 			{

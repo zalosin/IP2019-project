@@ -14,13 +14,14 @@ public class ArticleModel
 	int createTime;
 	int authorId;
 	int categoryId;
+	String imageLink;
 
 	public ArticleModel()
 	{
 		super();
 	}
 
-	public ArticleModel(int id, String title, String body, int createTime, int authorId, int categoryId)
+	public ArticleModel(int id, String title, String body, int createTime, int authorId, int categoryId, String imageLink)
 	{
 		super();
 		this.id = id;
@@ -29,6 +30,7 @@ public class ArticleModel
 		this.createTime = createTime;
 		this.authorId = authorId;
 		this.categoryId = categoryId;
+		this.imageLink = imageLink;
 	}
 
 	public int getId()
@@ -98,6 +100,18 @@ public class ArticleModel
 		int result = 1;
 		result = prime * result + id;
 		return result;
+	}
+	
+	
+
+	public String getImageLink()
+	{
+		return imageLink;
+	}
+
+	public void setImageLink(String imageLink)
+	{
+		this.imageLink = imageLink;
 	}
 
 	@Override

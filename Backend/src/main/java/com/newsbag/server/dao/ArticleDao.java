@@ -37,7 +37,7 @@ public class ArticleDao
 	public List<ArticleModel> getAllArticles() throws SQLException
 	{
 		final ResultSet resultSet = dbConnector
-				.executeQuery("SELECT id, title, body, createTime, authorId, categoryId FROM articles;");
+				.executeQuery("SELECT id, title, body, createTime, authorId, categoryId, imageLink FROM articles;");
 
 		return convertResultSetToArticleModels(resultSet);
 	}
@@ -50,7 +50,7 @@ public class ArticleDao
 	 */
 	public void createArticle(ArticleModel article) throws SQLException
 	{
-		final String sql = "INSERT INTO articles (title, body, createTime, authorId, categoryId) VALUES (?,?,?,?,?)";
+		final String sql = "INSERT INTO articles (title, body, createTime, authorId, categoryId, imageLink) VALUES (?,?,?,?,?,?)";
 		final PreparedStatement preparedStatement = dbConnector.getPreparedStatement(sql);
 		
 		preparedStatement.setString(1, article.getTitle());
@@ -58,6 +58,7 @@ public class ArticleDao
 		preparedStatement.setInt(3, Integer.valueOf(String.valueOf(System.currentTimeMillis() / 1000)));
 		preparedStatement.setInt(4, article.getAuthorId());
 		preparedStatement.setInt(5, article.getCategoryId());
+		preparedStatement.setString(6, article.getImageLink());
 		
 		preparedStatement.execute();
 		
@@ -71,7 +72,7 @@ public class ArticleDao
 	 */
 	public void updateArticle(ArticleModel article) throws SQLException
 	{
-		final String sql = "UPDATE articles SET title=?, body=?, createTime=?, authorId=?, categoryId=? WHERE id = ?";
+		final String sql = "UPDATE articles SET title=?, body=?, createTime=?, authorId=?, categoryId=?, imageLink=? WHERE id = ?";
 		final PreparedStatement preparedStatement = dbConnector.getPreparedStatement(sql);
 		
 		preparedStatement.setString(1, article.getTitle());
@@ -79,7 +80,8 @@ public class ArticleDao
 		preparedStatement.setInt(3, Integer.valueOf(String.valueOf(System.currentTimeMillis() / 1000)));
 		preparedStatement.setInt(4, article.getAuthorId());
 		preparedStatement.setInt(5, article.getCategoryId());
-		preparedStatement.setInt(6, article.getId());
+		preparedStatement.setString(6, article.getImageLink());
+		preparedStatement.setInt(7, article.getId());
 		
 		preparedStatement.executeUpdate();
 	}
@@ -121,8 +123,9 @@ public class ArticleDao
 				int createTime = resultSet.getInt("createTime");
 				int authorId = resultSet.getInt("authorId");
 				int categoryId = resultSet.getInt("categoryId");
+				String imageLink = resultSet.getString("imageLink");
 	
-				final ArticleModel article = new ArticleModel(id, title, body, createTime, authorId, categoryId);
+				final ArticleModel article = new ArticleModel(id, title, body, createTime, authorId, categoryId, imageLink);
 				articles.add(article);
 			}
 		}
