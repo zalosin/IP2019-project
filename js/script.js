@@ -112,6 +112,7 @@ function renderCategories(arr){
         let div2 = `<li><a href="#" class="cat-"`+arr[i].id+`>`+title+`<span>340</span></a></li>`;
         $("#category-navbar-ul").append(div);
         $("#bottom-category-ul").append(div2);
+        $("#footer-category-ul").append(div);
     }
 }
 

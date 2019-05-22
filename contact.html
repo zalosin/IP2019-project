@@ -32,8 +32,8 @@
 
 <body>
 
-	<!-- Header -->
-	<header id="header">
+	<!-- Header --><header id="header">
+		<!-- Nav -->
 		<div id="nav">
 			<!-- Main Nav -->
 			<div id="nav-fixed">
@@ -45,14 +45,10 @@
 					<!-- /logo -->
 
 					<!-- nav -->
-					<ul class="nav-menu nav navbar-nav">
+					<ul id="category-navbar-ul" class="nav-menu nav navbar-nav">
 						<li><a href="category.html">Stiri recente</a></li>
 						<li><a href="category.html">Recomandari</a></li>
-						<li class="cat-1"><a href="category.html">Actualitate</a></li>
-						<li class="cat-2"><a href="category.html">Economie</a></li>
-						<li class="cat-3"><a href="category.html">Externe</a></li>
-						<li class="cat-4"><a href="category.html">Tech</a></li>
-						<li class="cat-1"><a href="category.html">Sport</a></li>
+
 					</ul>
 					<!-- /nav -->
 
@@ -78,7 +74,7 @@
 				<div class="row">
 					<div class="col-md-10">
 						<ul class="page-header-breadcrumb">
-							<li><a href="index.html">Home</a></li>
+							<li><a href="index.html">Acasa</a></li>
 							<li>Contact</li>
 						</ul>
 						<h1>Contact</h1>
@@ -107,17 +103,17 @@
 								<p><strong>Email:</strong> <a href="#">Webmag@email.com</a></p>
 							</li>
 							<li>
-								<p><strong>Phone:</strong> 213-520-7376</p>
+								<p><strong>Telefon:</strong> 213-520-7376</p>
 							</li>
 							<li>
-								<p><strong>Address:</strong> 3770 Oliver Street</p>
+								<p><strong>Adresa:</strong> 3770 Oliver Street</p>
 							</li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-5 col-md-offset-1">
 					<div class="section-row">
-						<h3>Send A Message</h3>
+						<h3>Trimite un mesaj</h3>
 						<form>
 							<div class="row">
 								<div class="col-md-7">
@@ -128,15 +124,15 @@
 								</div>
 								<div class="col-md-7">
 									<div class="form-group">
-										<span>Subject</span>
+										<span>Subiect</span>
 										<input class="input" type="text" name="subject">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<textarea class="input" name="message" placeholder="Message"></textarea>
+										<textarea class="input" name="message" placeholder="Mesaj"></textarea>
 									</div>
-									<button class="primary-button">Submit</button>
+									<button class="primary-button">Trimite</button>
 								</div>
 							</div>
 						</form>
@@ -150,87 +146,82 @@
 	<!-- /section -->
 
 	<!-- Footer -->
-	<footer id="footer">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<div class="col-md-5">
-					<div class="footer-widget">
-						<div class="footer-logo">
-							<a href="index.html" class="logo"><img src="./img/logo.png" alt=""></a>
-						</div>
-						<ul class="footer-nav">
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Advertisement</a></li>
-						</ul>
-						<div class="footer-copyright">
-							<span>&copy;
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;
-								<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-								with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-									target="_blank">Colorlib</a>
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="footer-widget">
-								<h3 class="footer-title">About Us</h3>
-								<ul class="footer-links">
-									<li><a href="about.html">About Us</a></li>
-									<li><a href="#">Join Us</a></li>
-									<li><a href="contact.html">Contacts</a></li>
-								</ul>
+    <footer id="footer">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-5">
+						<div class="footer-widget">
+							<div class="footer-logo">
+								<a href="index.html" class="logo">The News Bag</a>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="footer-widget">
-								<h3 class="footer-title">Catagories</h3>
-								<ul class="footer-links">
-									<li><a href="category.html">Web Design</a></li>
-									<li><a href="category.html">JavaScript</a></li>
-									<li><a href="category.html">Css</a></li>
-									<li><a href="category.html">Jquery</a></li>
-								</ul>
+							<ul class="footer-nav">
+								<li><a href="#">Politica de confidentialitate</a></li>
+								<li><a href="#">Reclama</a></li>
+							</ul>
+							<div class="footer-copyright">
+								<span>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> Toate drepturile rezervate | Model creat cu <i class="fa fa-heart-o" aria-hidden="true"></i> de catre <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-md-3">
-					<div class="footer-widget">
-						<h3 class="footer-title">Join our Newsletter</h3>
-						<div class="footer-newsletter">
-							<form>
-								<input class="input" type="email" name="newsletter" placeholder="Enter your email">
-								<button class="newsletter-btn"><i class="fa fa-paper-plane"></i></button>
-							</form>
+	
+					<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="footer-widget">
+									<h3 class="footer-title">Despre noi</h3>
+									<ul class="footer-links">
+										<li><a href="about.html">Despre noi</a></li>
+										<li><a href="#">Alatura-te</a></li>
+										<li><a href="contact.html">Contact</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="footer-widget">
+									<h3 class="footer-title">Categorii</h3>
+									<div class="category-widget">
+										<ul id="footer-category-ul">
+											</ul>
+									</div>
+								</div>
+							</div>
 						</div>
-						<ul class="footer-social">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-						</ul>
 					</div>
+	
+					<div class="col-md-3">
+						<div class="footer-widget">
+							<h3 class="footer-title">Abonati-va la buletinul informativ</h3>
+							<div class="footer-newsletter">
+								<form>
+									<input class="input" type="email" name="newsletter" placeholder="Enter your email">
+									<button class="newsletter-btn"><i class="fa fa-paper-plane"></i></button>
+								</form>
+							</div>
+							<ul class="footer-social">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							</ul>
+						</div>
+					</div>
+	
 				</div>
-
+				<!-- /row -->
 			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</footer>
+			<!-- /container -->
+		</footer>
 	<!-- /Footer -->
 
 	<!-- jQuery Plugins -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/script.js"></script>
 
 </body>
 
