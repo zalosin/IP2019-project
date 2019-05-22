@@ -1,21 +1,21 @@
 let url = "https://cors-anywhere.herokuapp.com/http://newsbagserver.herokuapp.com/article/all";
 
 function getArticles() {
-
-    fetch(url)
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-        })
-        .then((json) => {
-            let articles = json;
-            if ( window.location.pathname.indexOf("index.html") > -1 ){
-                renderArticles(articles);
-                renderEditorChoices(articles);
-                renderMostRead(articles);
-            }
-        })
+    if ( window.location.pathname.indexOf("index.html") > -1 ){
+        console.error(url);
+        fetch(url)
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+            })
+            .then((json) => {
+                let articles = json;
+                    renderArticles(articles);
+                    renderEditorChoices(articles);
+                    renderMostRead(articles);
+            })
+    }
 
     let url2 = "https://cors-anywhere.herokuapp.com/http://newsbagserver.herokuapp.com/category/all";
     fetch(url2)
@@ -36,7 +36,7 @@ function renderArticles(arr) {
         var date_string = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
         let el1 = `<div id="post-"` + i + ` class="col-md-4">
                 <div class="post">
-                    <a class="post-img" href="blog-post.html"><img src="./img/stire-6.jpg" alt=""></a>
+                    <a class="post-img" href="blog-post.html?id=`+arr[i].id+`"><img src="./img/stire-6.jpg" alt=""></a>
                     <div class="post-body">
                         <div class="post-meta">
                             <a class="post-category cat-1" href="category.html">Actualitate</a>
@@ -128,3 +128,5 @@ function search(elem){
         window.location.replace("search-results.html?search="+elem.value);
     }
 }
+
+getArticles();
