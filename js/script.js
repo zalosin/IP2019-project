@@ -1,5 +1,6 @@
+let url = "https://cors-anywhere.herokuapp.com/http://newsbagserver.herokuapp.com/article/all";
+
 function getArticles() {
-    let url = "https://cors-anywhere.herokuapp.com/http://newsbagserver.herokuapp.com/article/all";
 
     fetch(url)
         .then((response) => {
@@ -9,9 +10,11 @@ function getArticles() {
         })
         .then((json) => {
             let articles = json;
-            renderArticles(articles);
-            renderEditorChoices(articles);
-            renderMostRead(articles);
+            if ( window.location.pathname.indexOf("index.html") > -1 ){
+                renderArticles(articles);
+                renderEditorChoices(articles);
+                renderMostRead(articles);
+            }
         })
 
     let url2 = "https://cors-anywhere.herokuapp.com/http://newsbagserver.herokuapp.com/category/all";
@@ -120,4 +123,8 @@ function ca(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-getArticles();
+function search(elem){
+    if(event.key === 'Enter') {
+        window.location.replace("search-results.html?search="+elem.value);
+    }
+}

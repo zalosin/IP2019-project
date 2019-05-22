@@ -34,40 +34,40 @@
 <body>
 
     <!-- Header -->
-	<header id="header">
-		<!-- Nav -->
-		<div id="nav">
-			<!-- Main Nav -->
-			<div id="nav-fixed">
-				<div class="container">
-					<!-- logo -->
-					<div class="nav-logo">
-						<a href="index.html" class="logo">The News Bag</a>
-					</div>
-					<!-- /logo -->
+    <header id="header">
+        <!-- Nav -->
+        <div id="nav">
+            <!-- Main Nav -->
+            <div id="nav-fixed">
+                <div class="container">
+                    <!-- logo -->
+                    <div class="nav-logo">
+                        <a href="index.html" class="logo">The News Bag</a>
+                    </div>
+                    <!-- /logo -->
 
-					<!-- nav -->
-					<ul id="category-navbar-ul" class="nav-menu nav navbar-nav">
-						<li><a href="category.html">Stiri recente</a></li>
-						<li><a href="category.html">Recomandari</a></li>
+                    <!-- nav -->
+                    <ul id="category-navbar-ul" class="nav-menu nav navbar-nav">
+                        <li><a href="category.html">Stiri recente</a></li>
+                        <li><a href="category.html">Recomandari</a></li>
+                    </ul>
+                    <!-- /nav -->
 
-					</ul>
-					<!-- /nav -->
-
-					<!-- search & aside toggle -->
-					<div class="nav-btns">
-						<a href="login.html">Login</a>
-						<button class="search-btn"><i class="fa fa-search"></i></button>
-						<div class="search-form">
-							<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
-							<button class="search-close"><i class="fa fa-times"></i></button>
-						</div>
-					</div>
-					<!-- /search & aside toggle -->
-				</div>
-			</div>
-			<!-- /Main Nav -->
-		</div>
+                    <!-- search & aside toggle -->
+                    <div class="nav-btns">
+                        <a href="login.html">Login</a>
+                        <button class="search-btn"><i class="fa fa-search"></i></button>
+                        <div class="search-form">
+                            <input class="search-input" onkeydown="search(this)"  type="text" name="search" placeholder="Enter Your Search ...">
+                            <button class="search-close"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /search & aside toggle -->
+                </div>
+            </div>
+            <!-- /Main Nav -->
+        </div>
+        
         <!-- /Nav -->
 
         <!-- Page Header -->
@@ -195,6 +195,7 @@
     <script src="js/bootstrap-tagsinput.js"></script>
 	<script src="js/script.js"></script>
     <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+    <script src="js/script.js"></script>
     <!-- <script>tinymce.init({ selector:'textarea' });</script> -->
     <script>
         tinymce.init({
