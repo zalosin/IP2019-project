@@ -81,6 +81,19 @@ public class UserHandler
 	{
 		return userCache.getAllCachedUsers();
 	}
+	
+	@GET
+	@Secured
+	@Path("/username/{name}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public UserModel getUserByUsername(@PathParam("name") final String name)
+	{
+		final UserModel user = userCache.getUserByUsername(name);
+		
+		user.setPassword(null);
+		
+		return user;
+	}
 
 	@GET
 	@Secured
